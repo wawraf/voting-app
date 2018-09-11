@@ -1,4 +1,5 @@
 // server.js
+console.log('This is a message from server.')
 
 // init project
 var express = require('express');

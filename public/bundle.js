@@ -375,11 +375,11 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /*!*********************!*\
   !*** ./app/app.jsx ***!
   \*********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar React = __webpack_require__(/*! react */ \"../rbd/pnpm-volume/9a661d19-9465-405c-a91c-7d62d7cafec6/node_modules/.registry.npmjs.org/react/16.4.2/node_modules/react/index.js\");\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"../rbd/pnpm-volume/9a661d19-9465-405c-a91c-7d62d7cafec6/node_modules/.registry.npmjs.org/react-dom/16.4.2/node_modules/react-dom/index.js\");\n\n/* Import Styles */\n__webpack_require__(/*! ./styles/main */ \"./app/styles/main.scss\");\n\n/* Import Components */\n\nvar text = ['Some text', 'Hello World!', 'This is just a destructuring test :)'];\n\nvar iDontWantThat = text[0],\n    sentences = text.slice(1);\n\n\nvar App = function App(_ref) {\n  var array = _ref.array;\n  return React.createElement(\n    'div',\n    { className: 'App' },\n    array.map(function (element, index) {\n      return React.createElement(\n        'p',\n        { key: index },\n        element\n      );\n    })\n  );\n};\n\nReactDOM.render(React.createElement(App, { array: sentences }), document.getElementById('main'));\n\n//# sourceURL=webpack:///./app/app.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"../rbd/pnpm-volume/9a661d19-9465-405c-a91c-7d62d7cafec6/node_modules/.registry.npmjs.org/react/16.4.2/node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\nconsole.log('This is a message from client.');\n\n\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"../rbd/pnpm-volume/9a661d19-9465-405c-a91c-7d62d7cafec6/node_modules/.registry.npmjs.org/react-dom/16.4.2/node_modules/react-dom/index.js\");\n/* Import Styles */\n\n\n__webpack_require__(/*! ./styles/main */ \"./app/styles/main.scss\");\n/* Import Components */\n\n\nvar text = ['Some text', 'Hello World!', 'This is just a destructuring test :)'];\nvar iDontWantThat = text[0],\n    sentences = text.slice(1);\n\nvar App = function App(_ref) {\n  var array = _ref.array;\n  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"App\"\n  }, array.map(function (element, index) {\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", {\n      key: index\n    }, element);\n  }));\n};\n\nReactDOM.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, {\n  array: sentences\n}), document.getElementById('main'));\n\n//# sourceURL=webpack:///./app/app.jsx?");
 
 /***/ }),
 

@@ -3,7 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   context: path.join(__dirname, './'),
   entry: './app/app.jsx',
   output: {
@@ -19,7 +19,7 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: 'babel-loader',
         options: {
-          presets: ['env', 'stage-0', 'react']
+          presets: ['@babel/env', '@babel/react']
         },
         exclude: /node_modules/,
         include: path.join(__dirname, 'app'),
