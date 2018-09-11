@@ -1,4 +1,4 @@
-console.log('This is a message from client.')
+console.log('%cThis is a message from client.', 'color: green; font-weight: bold;')
 
 import React from 'react'
 const ReactDOM = require('react-dom');
