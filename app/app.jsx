@@ -1,4 +1,6 @@
-const React = require('react');
+console.log('This is a message from client.')
+
+import React from 'react'
 const ReactDOM = require('react-dom');
 
 /* Import Styles */

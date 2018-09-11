@@ -1,8 +1,8 @@
 {
   "name": "voting-app",
-  "version": "0.0.1",
-  "description": "A small scaffold to get you started using React with Webpack",
-  "author": "Rafal Wawrowski",
+  "version": "0.0.2",
+  "description": "A freeCodeCamp Voting App Project",
+  "author": "Rafał Wawrowski",
   "main": "server.js",
   "scripts": {
     "build": "webpack",
@@ -12,6 +12,10 @@
     "express": "^4.16.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "redux": "^4.0.0",
+    "react-redux": "^5.0.7"
+  },
+  "devDependencies": {
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
     "css-loader": "^0.28.11",
@@ -19,24 +23,21 @@
     "sass-loader": "^7.0.1",
     "node-sass": "^4.9.0",
     "mini-css-extract-plugin": "^0.4.0",
-    "redux": "^4.0.0",
-    "react-redux": "^5.0.7",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.x",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-env": "^1.7.0"
+    "babel-loader": "^8.0.2",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-env": "^7.0.0"
   },
   "engines": {
     "node": "8.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/fcc-react-recipe"
+    "url": "https://github.com/wawraf/voting-app"
   },
   "license": "MIT",
   "keywords": [
     "node",
     "glitch",
-    "express"
+    "freecodecamp"
   ]
 }
