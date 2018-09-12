@@ -5,6 +5,7 @@ import constants from './constants';
 mongoose.Promise = global.Promise;
 
 try {
+  mongoose.set('useCreateIndex', true);
   mongoose.connect(constants.MONGO_URL, { useNewUrlParser: true });
 } catch (err) {
   mongoose.createConnection(constants.MONGO_URL);
@@ -15,5 +16,5 @@ mongoose.connection
   console.log('MongoDB is connected!');
 })
 	.on('error', (err) => {
-  console.log(err);
+  throw err
 });

@@ -1,7 +1,11 @@
+// Import dep
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import helmet from 'helmet';
+
+// Import modules
+import routes from '../routes'
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
@@ -24,4 +28,22 @@ export default (app) => {
   if (isDev) {
     app.use(morgan('dev'));
   }
+  
+  // Middleware for handling routes and errors
+  app.use('/', routes);
+  
+  app.use((req, res, next) => {
+    const err = new Error('Not found');
+    err.status = 404;
+    next(err);
+  });
+  
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500).json({
+      error: {
+        message: err.message,
+      },
+    });
+    next(err);
+  });
 };
