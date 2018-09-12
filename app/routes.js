@@ -5,7 +5,7 @@ const router = express.Router()
 
 /* Router PARAM settings */
 
-router.param('pollId', (req, res, next, id) => {
+router.param('pID', (req, res, next, id) => {
   Poll.findById(id, (err, doc) => {
     if (err) return next(err)
     
@@ -20,14 +20,16 @@ router.param('pollId', (req, res, next, id) => {
   })
 })
 
-router.param('answerId', (req, res, next, id) => {
-  if (!req.answers) {
+router.param('aID', (req, res, next, id) => {
+  req.answer = req.poll.answers.id(id)
+  
+  if (!req.answer) {
     const err = new Error('Document (answer) not found in DB.')
     err.status = 404
     return next(err)
   }
   
-  req.answer = req.poll.answers.id(id)
+  return next();
 })
 
 /* GET,POST, DELETE Routes */
@@ -45,7 +47,7 @@ router.get('/polls', (req, res, next) => {
   })
 })
 
-router.get('/:pollId', (req, res) => {
+router.get('/:pID', (req, res) => {
   res.json(req.poll);
 })
 
@@ -57,7 +59,7 @@ router.post('/new', (req, res, next) => {
   })
 })
 
-router.post('/:pollId/new', (req, res, next) => {
+router.post('/:pID/new', (req, res, next) => {
   req.poll.answers.push(req.body);
   
   req.poll.save((err, doc) => {
@@ -66,14 +68,14 @@ router.post('/:pollId/new', (req, res, next) => {
   })
 })
 
-router.post('/:pollId/:answerId/vote', (req, res, next) => {
-  req.answer.vote(req.vote, (err, doc) => {
+router.post('/:pID/:aID/vote', (req, res, next) => {
+  req.answer.vote((err, doc) => {
     if (err) return next(err)
     res.json(doc)
   })
 })
 
-router.delete('/:pollId', (req, res, next, id) => {
+router.delete('/:pID', (req, res, next) => {
   req.poll.remove((err) => {
     if (err) return next(err)
     

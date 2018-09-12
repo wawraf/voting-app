@@ -13,9 +13,9 @@ const AnswerSchema = new Schema({
   },
 });
 
-AnswerSchema.method('vote', function (vote, cb) {
+AnswerSchema.method('vote', function (callback) {
   this.votes += 1;
-  this.parent().save(cb);
+  this.parent().save(callback);
 });
 
 const PollSchema = new Schema({
