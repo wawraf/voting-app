@@ -1,5 +1,5 @@
 const devConfig = {
-  MONGO_URL: 'mongodb://localhost/votingAppDb-dev',
+  MONGO_URL: `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds059306.mlab.com:59306/voting-app`,
 };
 const testConfig = {
   MONGO_URL: 'mongodb://localhost/votingAppDb-test',
