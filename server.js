@@ -1,6 +1,38 @@
 // server.js
 console.log('This is a message from server.')
 
+import express from 'express';
+
+import constants from './app/config/constants';
+import './app/config/database';
+import middlewaresConfig from './app/config/middlewares';
+
+const app = express();
+
+middlewaresConfig(app);
+
+app.get('/', (req, res) => {
+  res.send('works!!!!');
+});
+
+app.listen(constants.PORT, (err) => {
+  if (err) {
+    throw err;
+  } else {
+    console.log(
+			`
+    Server is running on port: ${constants.PORT}
+    ---
+    Running on ${process.env.NODE_ENV}
+    `,
+		);
+    console.log(constants);
+  }
+});
+
+
+
+/*
 // init project
 var express = require('express');
 var app = express();
@@ -21,3 +53,4 @@ app.get("*", function(request, response) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+*/

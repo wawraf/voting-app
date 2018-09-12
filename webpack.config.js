@@ -1,5 +1,4 @@
 const path = require('path');
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -8,7 +7,7 @@ module.exports = {
   entry: './app/app.jsx',
   output: {
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
@@ -22,7 +21,7 @@ module.exports = {
           presets: ['@babel/env', '@babel/react']
         },
         exclude: /node_modules/,
-        include: path.join(__dirname, 'app'),
+        include: path.join(__dirname, 'app')
       },
       {
         test: /\.scss$/,
