@@ -47,7 +47,7 @@ router.get('/polls', (req, res, next) => {
   })
 })
 
-router.get('/:pID', (req, res) => {
+router.get('/poll/:pID', (req, res) => {
   res.json(req.poll);
 })
 
@@ -59,7 +59,7 @@ router.post('/new', (req, res, next) => {
   })
 })
 
-router.post('/:pID/new', (req, res, next) => {
+router.post('/poll/:pID/new', (req, res, next) => {
   req.poll.answers.push(req.body);
   
   req.poll.save((err, doc) => {
@@ -68,14 +68,14 @@ router.post('/:pID/new', (req, res, next) => {
   })
 })
 
-router.post('/:pID/:aID/vote', (req, res, next) => {
+router.post('/poll/:pID/:aID/vote', (req, res, next) => {
   req.answer.vote((err, doc) => {
     if (err) return next(err)
     res.json(doc)
   })
 })
 
-router.delete('/:pID', (req, res, next) => {
+router.delete('/poll/:pID', (req, res, next) => {
   req.poll.remove((err) => {
     if (err) return next(err)
     

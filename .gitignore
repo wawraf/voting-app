@@ -1,2 +1,4 @@
 build
 .env
+.glitch-assets
+public
