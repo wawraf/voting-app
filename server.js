@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   res.send('works!!!!');
 });
 
-app.listen(constants.PORT, (err) => {
+const server = app.listen(constants.PORT, (err) => {
   if (err) {
     throw err;
   } else {
@@ -30,7 +30,12 @@ app.listen(constants.PORT, (err) => {
   }
 });
 
+function stop() {
+  server.close();
+}
 
+module.exports = server
+module.exports.stop
 
 /*
 // init project

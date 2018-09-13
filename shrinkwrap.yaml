@@ -16,12 +16,15 @@ devDependencies:
   '@babel/preset-react': 7.0.0
   '@babel/register': 7.0.0
   babel-loader: 8.0.2
+  babel-plugin-transform-remove-console: 6.9.4
   chai: 4.1.2
+  chai-http: 4.2.0
   css-loader: 1.0.0
   mini-css-extract-plugin: 0.4.2
   mocha: 5.2.0
   morgan: 1.9.1
   node-sass: 4.9.3
+  portfinder: 1.0.17
   sass-loader: 7.1.0
   style-loader: 0.23.0
   webpack: 4.18.0
@@ -725,6 +728,25 @@ packages:
     dev: true
     resolution:
       integrity: sha512-5tPDap4bGKTLPtci2SUl/B7Gv8RnuJFuQoWx26RJobS0fFrz4reUA3JnwIM+HVHEmWE0C1mzKhDtTp8NsWY02Q==
+  /@types/chai/4.1.4:
+    dev: true
+    resolution:
+      integrity: sha512-h6+VEw2Vr3ORiFCyyJmcho2zALnUq9cvdB/IO8Xs9itrJVCenC7o26A6+m7D0ihTTr65eS259H5/Ghl/VjYs6g==
+  /@types/cookiejar/2.1.0:
+    dev: true
+    resolution:
+      integrity: sha512-EIjmpvnHj+T4nMcKwHwxZKUfDmphIKJc2qnEMhSoOvr1lYEQpuRKRz8orWr//krYIIArS/KGGLfL2YGVUYXmIA==
+  /@types/node/10.9.4:
+    dev: true
+    resolution:
+      integrity: sha512-fCHV45gS+m3hH17zgkgADUSi2RR1Vht6wOZ0jyHP8rjiQra9f+mIcgwPQHllmDocYOstIEbKlxbFDYlgrTPYqw==
+  /@types/superagent/3.8.4:
+    dependencies:
+      '@types/cookiejar': 2.1.0
+      '@types/node': 10.9.4
+    dev: true
+    resolution:
+      integrity: sha512-Dnh0Iw6NO55z1beXvlsvUrfk4cd9eL2nuTmUk+rAhSVCk10PGGFbqCCTwbau9D0d2W3DITiXl4z8VCqppGkMPQ==
   /@webassemblyjs/ast/1.7.6:
     dependencies:
       '@webassemblyjs/helper-module-context': 1.7.6
@@ -1058,6 +1080,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-NhIfhFwFeBct5Bmpfb6x0W7DRUI=
+  /async/1.5.2:
+    dev: true
+    resolution:
+      integrity: sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
   /async/2.6.1:
     dependencies:
       lodash: 4.17.10
@@ -1105,6 +1131,10 @@ packages:
       webpack: '>=2'
     resolution:
       integrity: sha512-Law0PGtRV1JL8Y9Wpzc0d6EE0GD7LzXWCfaeWwboUMcBWNG6gvaWTK1/+BK7a4X5EmeJiGEuDDFxUsOa8RSWCw==
+  /babel-plugin-transform-remove-console/6.9.4:
+    dev: true
+    resolution:
+      integrity: sha1-uYA2DAZzhOJLNXpYjYB9PINSd4A=
   /balanced-match/1.0.0:
     dev: true
     resolution:
@@ -1418,6 +1448,20 @@ packages:
     dev: true
     resolution:
       integrity: sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
+  /chai-http/4.2.0:
+    dependencies:
+      '@types/chai': 4.1.4
+      '@types/superagent': 3.8.4
+      cookiejar: 2.1.2
+      is-ip: 2.0.0
+      methods: 1.1.2
+      qs: 6.5.2
+      superagent: 3.8.3
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-5j9LC1pl9jaPanux+wDm9D/V6R2xLfpixsRQhoJHxCR0E5KaiT0aL4544pVtYXN/wTUVSDTmwye5mCXkO/8b3w==
   /chai/4.1.2:
     dependencies:
       assertion-error: 1.1.0
@@ -1694,6 +1738,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-5+Ch+e9DtMi6klxcWpboBtFoc7s=
+  /cookiejar/2.1.2:
+    dev: true
+    resolution:
+      integrity: sha512-Mw+adcfzPxcPeI+0WlvRrr/3lGVO0bD75SxX6811cxSh1Wbxx7xZBGK1eVtDf6si8rg2lhnUjsVLMFMfbRIuwA==
   /copy-concurrently/1.0.5:
     dependencies:
       aproba: 1.2.0
@@ -1862,6 +1910,12 @@ packages:
       ms: 2.0.0
     resolution:
       integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+  /debug/3.2.5:
+    dependencies:
+      ms: 2.1.1
+    dev: true
+    resolution:
+      integrity: sha512-D61LaDQPQkxJ5AUM2mbSJRbPkNs/TmdmOeLAi1hgDkpDfIfetSrjmWhccwtuResSwMbACjx/xXQofvM9CE/aeg==
   /decamelize/1.2.0:
     dev: true
     engines:
@@ -2393,6 +2447,10 @@ packages:
       node: '>= 0.12'
     resolution:
       integrity: sha1-SXBJi+YEwgwAXU9cI67NIda0kJk=
+  /formidable/1.2.1:
+    dev: true
+    resolution:
+      integrity: sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==
   /forwarded/0.1.2:
     dev: false
     engines:
@@ -2929,6 +2987,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-EEqOSqym09jNFXqO+L+rLXo//bY=
+  /ip-regex/2.1.0:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-+ni/XS5pE8kRzp+BnuUUa7bYROk=
   /ipaddr.js/1.6.0:
     dev: false
     engines:
@@ -3081,6 +3145,14 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-lSHHaEXMJhCoUgPd8ICpWML/q8A=
+  /is-ip/2.0.0:
+    dependencies:
+      ip-regex: 2.1.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-aO6gfooKCpTC0IDdZ0xzGrKkYas=
   /is-number/3.0.0:
     dependencies:
       kind-of: 3.2.2
@@ -3462,7 +3534,6 @@ packages:
     resolution:
       integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
   /methods/1.1.2:
-    dev: false
     engines:
       node: '>= 0.6'
     resolution:
@@ -3527,6 +3598,13 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-KI1+qOZu5DcW6wayYHSzR/tXKCDC5Om4s1z2QJjDULzLcmf3DvzS7oluY4HCTrc+9FiKmWUgeNLg7W3uIQvxtQ==
+  /mime/1.6.0:
+    dev: true
+    engines:
+      node: '>=4'
+    hasBin: true
+    resolution:
+      integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
   /mimic-fn/1.2.0:
     dev: true
     engines:
@@ -3718,6 +3796,10 @@ packages:
   /ms/2.0.0:
     resolution:
       integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
+  /ms/2.1.1:
+    dev: true
+    resolution:
+      integrity: sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
   /mute-stream/0.0.7:
     dev: true
     resolution:
@@ -4243,6 +4325,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-TuvHS8AOIZNAlE77WUDiR4rySV/VMptyMfcfeoMgs4P8apaZM3JrnbzBiixKUv+XR6i+BXrQh8WAnjaSPFO65Q==
+  /portfinder/1.0.17:
+    dependencies:
+      async: 1.5.2
+      debug: 2.6.9
+      mkdirp: 0.5.1
+    dev: true
+    engines:
+      node: '>= 0.12.0'
+    resolution:
+      integrity: sha512-syFcRIRzVI1BoEFOCaAiizwDolh1S1YXSodsVhncbhjzjZQulhczNRbqnUl9N31Q4dKGOXsNDqxC2BWBgSMqeQ==
   /posix-character-classes/0.1.1:
     dev: true
     engines:
@@ -5260,6 +5352,23 @@ packages:
       node: '>= 0.12.0'
     resolution:
       integrity: sha512-uCcN7XWHkqwGVt7skpInW6IGO1tG6ReyFQ1Cseh0VcN6VdcFQi62aG/2F3Y9ueA8x4IVlfaSUxpmQXQD9QrEuQ==
+  /superagent/3.8.3:
+    dependencies:
+      component-emitter: 1.2.1
+      cookiejar: 2.1.2
+      debug: 3.2.5
+      extend: 3.0.2
+      form-data: 2.3.2
+      formidable: 1.2.1
+      methods: 1.1.2
+      mime: 1.6.0
+      qs: 6.5.2
+      readable-stream: 2.3.6
+    dev: true
+    engines:
+      node: '>= 4.0'
+    resolution:
+      integrity: sha512-GLQtLMCoEIK4eDv6OGtkOoSMt3D+oq0y3dsxMuYuDvaNUvuT8eFBuLmfR0iYYzHC1e8hpzC6ZsxbuP6DIalMFA==
   /supports-color/2.0.0:
     dev: true
     engines:
@@ -5829,8 +5938,10 @@ specifiers:
   '@babel/preset-react': ^7.0.0
   '@babel/register': ^7.0.0
   babel-loader: ^8.0.2
+  babel-plugin-transform-remove-console: ^6.9.4
   body-parser: ^1.18.3
   chai: ^4.1.2
+  chai-http: ^4.2.0
   compression: ^1.7.3
   css-loader: ^1.0.0
   express: ^4.16.3
@@ -5840,6 +5951,7 @@ specifiers:
   mongoose: ^5.2.14
   morgan: ^1.9.1
   node-sass: ^4.9.3
+  portfinder: ^1.0.17
   react: ^16.5.0
   react-dom: ^16.5.0
   react-redux: ^5.0.7
