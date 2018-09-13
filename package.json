@@ -1,12 +1,12 @@
 {
   "name": "voting-app",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A freeCodeCamp Voting App Project",
   "author": "Rafał Wawrowski",
   "main": "server.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack && babel-node --presets @babel/env server.js",
+    "start": "NODE_ENV=development webpack && babel-node --presets @babel/env server.js",
     "dev": "NODE_ENV=development node public/app.bundle.js",
     "test": "NODE_ENV=test mocha --require @babel/polyfill --require @babel/register --exit"
   },
@@ -41,7 +41,8 @@
     "chai": "^4.1.2",
     "chai-http": "^4.2.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "portfinder": "^1.0.17"
+    "portfinder": "^1.0.17",
+    "dotenv": "^6.0.0"
   },
   "engines": {
     "node": "8.x"

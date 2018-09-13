@@ -68,7 +68,7 @@ router.post('/poll/:pID/new', (req, res, next) => {
   })
 })
 
-router.post('/poll/:pID/:aID/vote', (req, res, next) => {
+router.put('/poll/:pID/:aID/vote', (req, res, next) => {
   req.answer.vote((err, doc) => {
     if (err) return next(err)
     res.json(doc)
