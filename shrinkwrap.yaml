@@ -11,11 +11,15 @@ dependencies:
 devDependencies:
   '@babel/core': 7.0.0
   '@babel/node': 7.0.0
+  '@babel/polyfill': 7.0.0
   '@babel/preset-env': 7.0.0
   '@babel/preset-react': 7.0.0
+  '@babel/register': 7.0.0
   babel-loader: 8.0.2
+  chai: 4.1.2
   css-loader: 1.0.0
   mini-css-extract-plugin: 0.4.2
+  mocha: 5.2.0
   morgan: 1.9.1
   node-sass: 4.9.3
   sass-loader: 7.1.0
@@ -1036,6 +1040,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-mZEtWRg2tab1s0XA8H7vwI/GXZE=
+  /assertion-error/1.1.0:
+    dev: true
+    resolution:
+      integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==
   /assign-symbols/1.0.0:
     dev: true
     engines:
@@ -1226,6 +1234,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
+  /browser-stdout/1.3.1:
+    dev: true
+    resolution:
+      integrity: sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw==
   /browserify-aes/1.2.0:
     dependencies:
       buffer-xor: 1.0.3
@@ -1406,6 +1418,19 @@ packages:
     dev: true
     resolution:
       integrity: sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
+  /chai/4.1.2:
+    dependencies:
+      assertion-error: 1.1.0
+      check-error: 1.0.2
+      deep-eql: 3.0.1
+      get-func-name: 2.0.0
+      pathval: 1.1.0
+      type-detect: 4.0.8
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-D2RYS6ZC8PKs4oBiefTwbKI61zw=
   /chalk/1.1.3:
     dependencies:
       ansi-styles: 2.2.1
@@ -1433,6 +1458,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+  /check-error/1.0.2:
+    dev: true
+    resolution:
+      integrity: sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=
   /chokidar/2.0.4:
     dependencies:
       anymatch: 2.0.0
@@ -1565,6 +1594,11 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MVuS359B+YzaWqjCL/c+22gfryv+mCBPHAv3zyVI2GN8EY6IRP8VwtasXn8jyyhvvq84R4ImN1OKRtcbIasjYA==
+  /commander/2.15.1:
+    dev: true
+    resolution:
+      integrity: sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag==
+      tarball: 'http://registry.npmjs.org/commander/-/commander-2.15.1.tgz'
   /commander/2.18.0:
     dev: true
     resolution:
@@ -1848,6 +1882,14 @@ packages:
       node: '>=0.10'
     resolution:
       integrity: sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  /deep-eql/3.0.1:
+    dependencies:
+      type-detect: 4.0.8
+    dev: true
+    engines:
+      node: '>=0.12'
+    resolution:
+      integrity: sha512-+QeIQyN5ZuO+3Uk5DYh6/1eKO0m0YmJFGNmFHGACpf1ClL1nmlV/p4gNgbl2pJGxgXb4faqo6UE+M5ACEMyVcw==
   /define-properties/1.1.3:
     dependencies:
       object-keys: 1.0.12
@@ -1913,6 +1955,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
+  /diff/3.5.0:
+    dev: true
+    engines:
+      node: '>=0.3.1'
+    resolution:
+      integrity: sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
   /diffie-hellman/5.0.3:
     dependencies:
       bn.js: 4.11.8
@@ -2445,6 +2493,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-3t6rVToeoZfYSGd8YoLFR2DJkiQrIiUrGcjvFX2mDw3bn6k2OtwHN0TNCLbBO+w8qTvimhDkv+LSscbJY1vE6w==
+  /get-func-name/2.0.0:
+    dev: true
+    resolution:
+      integrity: sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=
   /get-stdin/4.0.1:
     dev: true
     engines:
@@ -2476,6 +2528,17 @@ packages:
     dev: true
     resolution:
       integrity: sha1-nmr2KZ2NO9K9QEMIMr0RPfkGxa4=
+  /glob/7.1.2:
+    dependencies:
+      fs.realpath: 1.0.0
+      inflight: 1.0.6
+      inherits: 2.0.3
+      minimatch: 3.0.4
+      once: 1.4.0
+      path-is-absolute: 1.0.1
+    dev: true
+    resolution:
+      integrity: sha512-MJTUg1kjuLeQCJ+ccE4Vpa6kKVXkPYJ2mOCQyUuKLcLQsdrMCpBPUi8qVE6+YuaJkozeA9NusTAw3hLr8Xe5EQ==
   /glob/7.1.3:
     dependencies:
       fs.realpath: 1.0.0
@@ -2513,6 +2576,12 @@ packages:
       node: '>=0.4.0'
     resolution:
       integrity: sha1-Dovf5NHduIVNZOBOp8AOKgJuVlg=
+  /growl/1.10.5:
+    dev: true
+    engines:
+      node: '>=4.x'
+    resolution:
+      integrity: sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA==
   /har-schema/2.0.0:
     dev: true
     engines:
@@ -2614,6 +2683,11 @@ packages:
     dev: true
     resolution:
       integrity: sha512-eWI5HG9Np+eHV1KQhisXWwM+4EPPYe5dFX1UZZH7k/E3JzDEazVH+VGlZi6R94ZqImq+A3D1mCEtrFIfg/E7sA==
+  /he/1.1.1:
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
   /helmet-crossdomain/0.3.0:
     dev: false
     engines:
@@ -3536,6 +3610,25 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
+  /mocha/5.2.0:
+    dependencies:
+      browser-stdout: 1.3.1
+      commander: 2.15.1
+      debug: 3.1.0
+      diff: 3.5.0
+      escape-string-regexp: 1.0.5
+      glob: 7.1.2
+      growl: 1.10.5
+      he: 1.1.1
+      minimatch: 3.0.4
+      mkdirp: 0.5.1
+      supports-color: 5.4.0
+    dev: true
+    engines:
+      node: '>= 4.0.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-2IUgKDhc3J7Uug+FxMXuqIyYzH7gJjXECKe/w43IGgQHTSj3InJi+yAA7T24L9bQMRKiUEHxEX37G5JpVUGLcQ==
   /mongodb-core/3.1.3:
     dependencies:
       bson: 1.1.0
@@ -4084,6 +4177,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-WcRPfuSR2nBNpBXaWkBwuk+P5EE=
+  /pathval/1.1.0:
+    dev: true
+    resolution:
+      integrity: sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
   /pbkdf2/3.0.16:
     dependencies:
       create-hash: 1.2.0
@@ -5169,6 +5266,14 @@ packages:
       node: '>=0.8.0'
     resolution:
       integrity: sha1-U10EXOa2Nj+kARcIRimZXp3zJMc=
+  /supports-color/5.4.0:
+    dependencies:
+      has-flag: 3.0.0
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-zjaXglF5nnWpsq470jSv6P9DwPvgLkuapYmfDm3JWOm0vkNTVF2tI4UrN2r6jH1qM/uc/WtxYY1hYoA2dOKj5w==
   /supports-color/5.5.0:
     dependencies:
       has-flag: 3.0.0
@@ -5316,6 +5421,12 @@ packages:
     optional: true
     resolution:
       integrity: sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
+  /type-detect/4.0.8:
+    dev: true
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
   /type-is/1.6.16:
     dependencies:
       media-typer: 0.3.0
@@ -5713,15 +5824,19 @@ shrinkwrapVersion: 3
 specifiers:
   '@babel/core': ^7.0.0
   '@babel/node': ^7.0.0
+  '@babel/polyfill': ^7.0.0
   '@babel/preset-env': ^7.0.0
   '@babel/preset-react': ^7.0.0
+  '@babel/register': ^7.0.0
   babel-loader: ^8.0.2
   body-parser: ^1.18.3
+  chai: ^4.1.2
   compression: ^1.7.3
   css-loader: ^1.0.0
   express: ^4.16.3
   helmet: ^3.13.0
   mini-css-extract-plugin: ^0.4.2
+  mocha: ^5.2.0
   mongoose: ^5.2.14
   morgan: ^1.9.1
   node-sass: ^4.9.3
