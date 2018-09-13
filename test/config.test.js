@@ -4,24 +4,19 @@ const chai = require('chai')
 const assert = chai.assert
 const expect = chai.expect
 const should = chai.should()
-const chaiHttp = require('chai-http')
-const portfinder = require('portfinder')
+const dotenv = require('dotenv')
 
-chai.use(chaiHttp)
+dotenv.config({path: '.env'})
 
 describe('/// CONFIG FILES TEST UNIT ///', function () {
   
-  before(async () => {
-    process.env.PORT = await portfinder.getPortPromise({port: 10002});
-    const app = require('../server');
-  });
-
-  after(async () => {
-    require('../server').stop;
-  });
-  
+  /* Mongoose model test */
   describe('1. Mongoose model testing', function(){
-    const poll = new Poll({question: 'This is just a test', })
+    const poll = new Poll({
+      question: 'This is just a test', 
+      answers: [
+      ]
+    })
     
     it('Poll from mongoose is an object', function(){
       expect(poll).to.be.an('object', 'This is an object')
@@ -30,15 +25,6 @@ describe('/// CONFIG FILES TEST UNIT ///', function () {
     it('Poll from mongoose have properties question and answers', function(){
       expect(poll).to.have.property('question').that.is.a('string')
       expect(poll).to.have.property('answers').that.is.an('array')
-    })
-    
-    it('Server working', function(done){
-      chai.request(require('../server'))
-      .get('/')
-      .end((req, { body }) => {
-        assert.equal(body.response, 'GET for home route')
-        done()
-      })
     })
   })
 })

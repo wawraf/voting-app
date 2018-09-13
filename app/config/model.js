@@ -6,6 +6,7 @@ const AnswerSchema = new Schema({
   answer: {
     type: String,
     unique: true,
+    default: 'Answer'
   },
   votes: {
     type: Number,
@@ -22,6 +23,7 @@ const PollSchema = new Schema({
   question: {
     type: String,
     unique: true,
+    default: 'Question'
   },
   answers: [AnswerSchema],
 });
