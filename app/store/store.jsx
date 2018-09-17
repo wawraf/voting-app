@@ -1,10 +1,12 @@
 import { createStore } from 'redux';
-import { reducer } from './reducer'
+import reducer from './reducer'
 
-export const store = createStore(reducer, window.STATE_FROM_SERVER)
+const store = createStore(reducer, window.STATE_FROM_SERVER)
 
 console.log('New store:')
 console.log(store.getState())
+
+export default store
 
 // const unsubscribe = store.subscribe(() => {
 //   console.log(store.getState())

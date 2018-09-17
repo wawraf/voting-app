@@ -7,7 +7,12 @@ module.exports = {
   entry: './app/app.jsx',
   output: {
     path: path.join(__dirname, 'public'),
-    filename: '[name].bundle.js'
+    filename: 'bundle.js'
+  },
+  devServer: {
+    inline: true,
+    contentBase: './public',
+    port: 8100,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss']

@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-
 const Schema = mongoose.Schema;
 
 const AnswerSchema = new Schema({
@@ -29,4 +28,5 @@ const PollSchema = new Schema({
 });
 
 const Poll = mongoose.model('Poll', PollSchema);
+
 export default Poll;

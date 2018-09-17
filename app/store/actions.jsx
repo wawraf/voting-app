@@ -1,4 +1,4 @@
-import actionTypes from './actionTypes';
+const actionTypes = require('./actionTypes');
 
 const action1 = text => {
   return {type: actionTypes.ACTION_1, text}

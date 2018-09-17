@@ -1,18 +1,17 @@
-import { ADD_TODO, TOGGLE_TODO, SET_FILTER, TYPING, visibilityFilters } from './actions'
-
+import { action1, action2 } from './actions'
 import { combineReducers } from 'redux'
 
-const todos = (state = [], action) => {
-  return state
+const reducer1 = (stateOfReducer1 = [], action) => {
+  return stateOfReducer1
 }
 
-const filter = (filter = '', action) => {
-  return filter
+const reducer2 = (stateOfReducer2 = '', action) => {
+  return stateOfReducer2
 }
 
 const reducer = combineReducers({
-  todos,
-  filter
+  reducer1,
+  reducer2
 })
 
-module.exports = { reducer }
+export default reducer
