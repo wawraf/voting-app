@@ -1,4 +1,5 @@
 // server.js
+//"start": "NODE_ENV=development webpack && babel-node --presets @babel/env server.js",
 console.log('This is a message from server.')
 
 import express from 'express';
@@ -9,11 +10,21 @@ import middlewaresConfig from './app/config/middlewares';
 
 const app = express();
 
-middlewaresConfig(app);
 
-app.get('/', (req, res) => {
-  res.send('works!!!!');
+/* FOR REACT TESTING ONLY */
+/* FOR REACT TESTING ONLY */
+// http://expressjs.com/en/starter/static-files.html
+app.use(express.static('public'));
+
+// http://expressjs.com/en/starter/basic-routing.html
+app.get("/", function(request, response) {
+  response.sendFile(__dirname + '/public/index.html');
 });
+/* FOR REACT TESTING ONLY */
+/* FOR REACT TESTING ONLY */
+
+
+middlewaresConfig(app);
 
 const server = app.listen(constants.PORT, (err) => {
   if (err) {
@@ -30,6 +41,7 @@ const server = app.listen(constants.PORT, (err) => {
   }
 });
 
+// Stop server is required to stop it for the test time
 function stop() {
   server.close();
 }

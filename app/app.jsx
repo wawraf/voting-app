@@ -1,6 +1,8 @@
 console.log('%cThis is a message from client.', 'color: green; font-weight: bold;')
 
 import React from 'react'
+import { Provider } from 'react-redux'
+import store from './store/store'
 const ReactDOM = require('react-dom');
 
 /* Import Styles */
@@ -25,6 +27,8 @@ const App = ({array}) => (
 )
 
 ReactDOM.render(
-  <App array={sentences}/>,
+  <Provider store={store}>
+    <App array={sentences}/>
+  </Provider>,
   document.getElementById('main')
 )

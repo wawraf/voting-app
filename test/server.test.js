@@ -1,4 +1,4 @@
-import Poll from '../app/config/model'
+import Poll from '../app/models/poll'
 
 const chai = require('chai')
 const assert = chai.assert

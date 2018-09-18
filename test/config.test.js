@@ -1,12 +1,9 @@
-import Poll from '../app/config/model'
+import Poll from '../app/models/poll'
 
 const chai = require('chai')
 const assert = chai.assert
 const expect = chai.expect
 const should = chai.should()
-const dotenv = require('dotenv')
-
-dotenv.config({path: '.env'})
 
 describe('/// CONFIG FILES TEST UNIT ///', function () {
   
