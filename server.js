@@ -3,28 +3,25 @@
 console.log('This is a message from server.')
 
 import express from 'express';
+import path from 'path'
 
 import constants from './app/config/constants';
 import './app/config/database';
 import middlewaresConfig from './app/config/middlewares';
+import errorHandler from './app/config/errorHandling'
 
 const app = express();
 
+middlewaresConfig(app)
 
-/* FOR REACT TESTING ONLY */
-/* FOR REACT TESTING ONLY */
-// http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function(request, response) {
-  response.sendFile(__dirname + '/public/index.html');
+app.get("/*", function(request, response) {
+  // response.redirect('/')
+  response.sendFile(path.join(__dirname + '/public/index.html'));
 });
-/* FOR REACT TESTING ONLY */
-/* FOR REACT TESTING ONLY */
 
-
-middlewaresConfig(app);
+errorHandler(app)
 
 const server = app.listen(constants.PORT, (err) => {
   if (err) {

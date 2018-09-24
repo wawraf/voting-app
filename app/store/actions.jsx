@@ -1,14 +1,35 @@
 const actionTypes = require('./actionTypes');
+const axios = require('axios')
 
-const action1 = text => {
-  return {type: actionTypes.ACTION_1, text}
-};
+// Authentication
+const login = () => (
+  { type: actionTypes.LOGIN, payload: true }
+)
 
-const action2 = index => {
-  return {type: actionTypes.ACTION_2, index}
+const logout = () => {
+  return {type: actionTypes.LOGOUT, payload: false}
+}
+
+const checkUser = () => (dispatch) => {
+  console.log('checking user with axios')
+  axios
+  .get('/auth/user')
+  .then(res => {
+    console.log('checking user')
+    console.log(res.data.user)
+    !!res.data.user
+    ? dispatch(login())
+    : dispatch(logout())
+  })
+  .catch(err => console.log('error while checking user'))
+}
+
+// Sidebar
+const showSidebar = () => {
+  return {type: actionTypes.SHOW_SIDEBAR}
 }
 
 module.exports = {
-  action1,
-  action2
+  checkUser,
+  showSidebar
 }
