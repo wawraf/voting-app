@@ -10,7 +10,7 @@ import MongoStore from 'connect-mongo'
 // Import modules
 import routes from '../routes/routes'
 import db from '../config/database'
-import '../config/passport'
+import passportConfig from '../config/passport'
 
 const MongoConnection = MongoStore(session)
 
@@ -45,21 +45,9 @@ export default (app) => {
   app.use(passport.initialize())
   app.use(passport.session())
   
+  passportConfig(passport)
+  
   // Middleware for handling routes and errors
   app.use('/', routes);
   
-  app.use((req, res, next) => {
-    const err = new Error('Not found');
-    err.status = 404;
-    next(err);
-  });
-  
-  app.use((err, req, res, next) => {
-    res.status(err.status || 500).json({
-      error: {
-        message: err.message,
-      },
-    });
-    next(err);
-  });
 };

@@ -32,18 +32,19 @@ module.exports = (router) => {
 
 
   /* GET,POST, DELETE Routes */
-  router.get('/polls', (req, res, next) => {
+  router.get('/api/polls', (req, res, next) => {
+    console.log('calling GET polls')
     Poll.find({}, (err, docs) => {
       if (err) return next(err)
       res.status(200).json(docs);
     })
   })
 
-  router.get('/poll/:pID', (req, res) => {
+  router.get('/api/poll/:pID', (req, res) => {
     res.json(req.poll);
   })
 
-  router.post('/new', (req, res, next) => {
+  router.post('/api/new', (req, res, next) => {
     const poll = new Poll(req.body)
     poll.save((err, doc) => {
       if (err) return next(err)
@@ -51,7 +52,7 @@ module.exports = (router) => {
     })
   })
 
-  router.post('/poll/:pID/new', (req, res, next) => {
+  router.post('/api/poll/:pID/new', (req, res, next) => {
     req.poll.answers.push(req.body);
 
     req.poll.save((err, doc) => {
@@ -60,14 +61,14 @@ module.exports = (router) => {
     })
   })
 
-  router.put('/poll/:pID/:aID/vote', (req, res, next) => {
+  router.put('/api/poll/:pID/:aID/vote', (req, res, next) => {
     req.answer.vote((err, doc) => {
       if (err) return next(err)
       res.json(doc)
     })
   })
 
-  router.delete('/poll/:pID', (req, res, next) => {
+  router.delete('/api/poll/:pID', (req, res, next) => {
     req.poll.remove((err) => {
       if (err) return next(err)
 

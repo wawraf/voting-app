@@ -4,30 +4,30 @@ module.exports = (router, passport) => {
   
   /* Authentication */
 const isLogged = (req, res, next) => {
-  if (req.isAuthentiated()) return next()
+  if (req.isAuthenticated()) return next()
   res.redirect('/')
 }
 
 const isLoggedOut = (req, res, next) => {
-  if (req.isUnathenticated()) return next()
+  if (req.isUnauthenticated()) return next()
   res.redirect('/')
 }
 
-router.get('/login', (req, res) => {
+router.get('/api/login', (req, res) => {
   res.json({ message: 'Login GET' });
 });
   
-router.get('/signup', (req, res) => {
+router.get('/api/signup', (req, res) => {
   res.json({ message: 'Signup GET' });
 });
 
 //Passport local login
-router.post('/login',
+router.post('/api/login',
            passport.authenticate('localLogin', { successRedirect: '/polls', failureRedirect: '/', failureFlash: true})
 )
 
 //Passport local register
-router.post('/register', (req, res, next) => {
+router.post('/api/register', (req, res, next) => {
   passport.authenticate('localRegister', (err, user, info) => {
     if (err) return next(err)
     
@@ -44,11 +44,19 @@ router.post('/register', (req, res, next) => {
 
 router.get('/auth/github', passport.authenticate('github'))
 
-router.get('/auth/gihub/callback', 
-           passport.authenticate('github', { successRedirect: '/polls', failureRedirect: '/', failureFlash: true})
+router.get('/auth/github/callback', 
+           passport.authenticate('github', { successRedirect: '/', failureRedirect: '/', failureFlash: true})
           )
   
-router.all('/logout', (req, res) => {
+router.get('/auth/user', (req, res, next) => {
+  console.log('checking user auth')
+  req.user
+    ? res.json({ user: req.user })
+    : res.json({ user: null })
+})
+  
+router.get('/api/logout', (req, res) => {
+  console.log('logging out')
   req.logout()
   res.redirect('/')
 })

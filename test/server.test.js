@@ -27,7 +27,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
   describe('2. HTTP requests and MongoDB testing', function(){
     it('Server is working', function(done){
       chai.request(require('../server'))
-      .get('/')
+      .get('/api')
       .end((err, res) => {
         assert.equal(res.status, 200)
         assert.equal(res.body.response, 'GET for home route')
@@ -39,7 +39,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
     describe('2.1 POST requests', () => {
       it('Creating new poll with mongoose', function(done){
         chai.request(require('../server'))
-        .post('/new')
+        .post('/api/new')
         .send()
         .end((err, res) => {
           assert.equal(res.status, 201)
@@ -55,7 +55,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
       
       it('Creating new answer in single poll', function(done){
         chai.request(require('../server'))
-        .post('/poll/' + pollID + '/new')
+        .post('/api/poll/' + pollID + '/new')
         .send()
         .end((err, res) => {
           assert.equal(res.status, 201)
@@ -75,7 +75,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
       
       it('Creating new answer in single poll (repeat)', function(done){
         chai.request(require('../server'))
-        .post('/poll/' + pollID + '/new')
+        .post('/api/poll/' + pollID + '/new')
         .send()
         .end((err, res) => {
           assert.equal(res.status, 201)
@@ -98,7 +98,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
     describe('2.2 PUT requests', () => {
       it('Upvoting an answer in single poll', function(done){
         chai.request(require('../server'))
-        .put(`/poll/${pollID}/${answerID}/vote`)
+        .put(`/api/poll/${pollID}/${answerID}/vote`)
         .send()
         .end((err, res) => {
           assert.equal(res.status, 200)
@@ -116,7 +116,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
       
       it('Upvoting an answer in single poll (repeat)', function(done){
         chai.request(require('../server'))
-        .put(`/poll/${pollID}/${answerID}/vote`)
+        .put(`/api/poll/${pollID}/${answerID}/vote`)
         .send()
         .end((err, res) => {
           assert.equal(res.status, 200)
@@ -136,7 +136,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
     describe('2.3 GET requests', () => {
       it('Getting all polls', function(done){
         chai.request(require('../server'))
-        .get('/polls')
+        .get('/api/polls')
         .end((err, {status, body}) => {
           assert.equal(status, 200)
           expect(body).is.an('array')
@@ -150,7 +150,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
       
       it('Getting poll by ID', function(done){
         chai.request(require('../server'))
-        .get('/poll/' + pollID)
+        .get('/api/poll/' + pollID)
         .end((err, {status, body}) => {
           assert.equal(status, 200)
           expect(body).is.an('object')
@@ -168,7 +168,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
     describe('2.4 DELETE requests', () => {
       it('Deleting single poll', function(done){
         chai.request(require('../server'))
-        .delete('/poll/' + pollID)
+        .delete('/api/poll/' + pollID)
         .send()
         .end((err, res) => {
           assert.equal(res.status, 200)
