@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
-import { showSidebar, checkUser } from '../../store/actions'
+import { showLoginBar, checkUser } from '../../store/actions'
+
+// Addon for UI animation
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 // Import modules
-import Home from './Home'
-import Sidebar from './Sidebar'
-import Polls from './Polls'
-import SinglePoll from './SinglePoll'
 import Header from '../presentationals/Header'
-import Lost from './Lost'
+import Home from './Home'
+import LoginBar from './LoginBar'
 import Footer from '../presentationals/Footer'
 
 class App extends Component {
@@ -19,20 +19,19 @@ class App extends Component {
   }
   
   render() {
-    const { isLogged, showSidebar, showSidebarFunc } = this.props
+    const { isLogged, showLoginBar, showLoginBarFunc } = this.props
 
     return (
       <BrowserRouter>
         <div className='App'>
-            <Header isLogged={ isLogged } showSidebarFunc={ showSidebarFunc } />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Sidebar} />
-              <Route exact path="/polls" component={Polls} />
-              <Route exact path="/SinglePoll" component={SinglePoll} />\
-              <Route component={Lost} />
-            </Switch>
-            {showSidebar ? <Sidebar /> : null}
+            <Header isLogged={ isLogged } showLoginBarFunc={ showLoginBarFunc } />
+            <Home isLogged={isLogged} />
+            <ReactCSSTransitionGroup
+                  transitionName="login"
+                  transitionEnterTimeout={500}
+                  transitionLeaveTimeout={300}>
+              {showLoginBar ? <LoginBar key='loginBar' showLoginBarFunc={ showLoginBarFunc } /> : null}
+            </ReactCSSTransitionGroup>
             <Footer />
         </div>
       </BrowserRouter>
@@ -44,13 +43,13 @@ class App extends Component {
 const mapStateToProps = (state) => (
   {
     isLogged: state.isLogged,
-    showSidebar: state.showSidebar
+    showLoginBar: state.showLoginBar
   }
 )
 
 const mapDispatchToProps = (dispatch) => (
   { 
-    showSidebarFunc: () => dispatch(showSidebar()),
+    showLoginBarFunc: () => dispatch(showLoginBar()),
     checkUser: () => dispatch(checkUser())
   }
 )

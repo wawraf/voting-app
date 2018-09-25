@@ -4,7 +4,7 @@ import React from 'react'
 import Poll from './Poll'
 
 const SinglePoll = () => (
-  <div className='singlePoll'>
+  <div className='singlePoll side'>
     <Poll />
     <button>DELETE POLL</button>
   </div>

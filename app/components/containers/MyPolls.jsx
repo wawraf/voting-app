@@ -3,9 +3,10 @@ import React from 'react'
 //Import modules
 import Poll from './Poll'
 
-const Polls = () => (
+const MyPolls = ({ isLogged }) => 
+(
   <div className='polls side'>
-    <h1>Created polls</h1>
+    <h1>My Polls</h1>
     <div className='pollsList'>
       <div className='pollOnList'>
         <Poll />
@@ -34,4 +35,4 @@ const Polls = () => (
   </div>
 )
 
-export default Polls
+export default MyPolls

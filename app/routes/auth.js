@@ -42,21 +42,19 @@ router.post('/api/register', (req, res, next) => {
   })(req, res, next) // Here we inject req into passport strategy
 })
 
-router.get('/auth/github', passport.authenticate('github'))
+router.get('/auth/github', isLoggedOut, passport.authenticate('github'))
 
 router.get('/auth/github/callback', 
            passport.authenticate('github', { successRedirect: '/', failureRedirect: '/', failureFlash: true})
           )
   
 router.get('/auth/user', (req, res, next) => {
-  console.log('checking user auth')
   req.user
     ? res.json({ user: req.user })
     : res.json({ user: null })
 })
   
-router.get('/api/logout', (req, res) => {
-  console.log('logging out')
+router.get('/api/logout', isLogged, (req, res) => {
   req.logout()
   res.redirect('/')
 })

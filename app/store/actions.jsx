@@ -25,11 +25,11 @@ const checkUser = () => (dispatch) => {
 }
 
 // Sidebar
-const showSidebar = () => {
-  return {type: actionTypes.SHOW_SIDEBAR}
+const showLoginBar = () => {
+  return {type: actionTypes.SHOW_LOGINBAR}
 }
 
 module.exports = {
   checkUser,
-  showSidebar
+  showLoginBar
 }
