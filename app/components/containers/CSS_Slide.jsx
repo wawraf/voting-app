@@ -7,7 +7,7 @@ class Trans extends Component {
   render() {
     const { Wrapper, isLogged, priv } = this.props
     
-    if (priv && isLogged == false) return <Redirect push to='/' />
+    if (priv && !isLogged) return <Redirect push to='/' />
     
     return (
         <ReactCSSTransitionGroup
