@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { showLoginBar, checkUser } from '../../store/actions'
 
 // Addon for UI animation
@@ -42,7 +42,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => (
   {
-    isLogged: state.isLogged,
+    isLogged: state.isLogged.isLogged,
     showLoginBar: state.showLoginBar
   }
 )

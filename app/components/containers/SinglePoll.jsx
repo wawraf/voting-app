@@ -1,7 +1,7 @@
 import React from 'react'
 
 //Import modules
-import Poll from './Poll'
+import Poll from '../presentationals/Poll'
 
 const SinglePoll = () => (
   <div className='singlePoll side'>

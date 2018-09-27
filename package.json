@@ -54,9 +54,7 @@
     "chai-http": "^4.2.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "portfinder": "^1.0.17",
-    "dotenv": "^6.0.0",
-    "webpack-dev-server": "^3.1.8",
-    "react-hot-loader": "^4.3.8"
+    "dotenv": "^6.0.0"
   },
   "engines": {
     "node": "8.x"

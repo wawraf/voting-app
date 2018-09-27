@@ -5,6 +5,7 @@ const LOGOUT = 'LOGOUT'
 const CREATE_POLL = 'CREATE_POLL'
 const DELETE_POLL = 'DELETE_POLL'
 const SHOW_LOGINBAR = 'SHOW_LOGINBAR'
+const LOADING = 'LOADING'
 
 module.exports = {
   GET_ALL_POLLS,
@@ -13,5 +14,6 @@ module.exports = {
   LOGOUT,
   CREATE_POLL,
   DELETE_POLL,
-  SHOW_LOGINBAR
+  SHOW_LOGINBAR,
+  LOADING
 }

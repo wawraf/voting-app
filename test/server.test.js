@@ -13,7 +13,8 @@ chai.use(chaiHttp);
 
 describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
   
-  before(async () => {
+  before(async function() {
+    this.timeout(20000);
     process.env.PORT = await portfinder.getPortPromise({port: 10002})
     const app = require('../server');
   });
@@ -27,24 +28,23 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
   describe('2. HTTP requests and MongoDB testing', function(){
     it('Server is working', function(done){
       chai.request(require('../server'))
-      .get('/api')
+      .get('/')
       .end((err, res) => {
         assert.equal(res.status, 200)
-        assert.equal(res.body.response, 'GET for home route')
         done()
       })
     })
     
-    let pollID, answerID, votesCur;
+    let pollID, pollID_2, pollID_3, answerID, votesCur;
     describe('2.1 POST requests', () => {
       it('Creating new poll with mongoose', function(done){
         chai.request(require('../server'))
         .post('/api/new')
-        .send()
+        .send({owner: '12345', question: 'Test question', answers: [{answer: 'Test answer'}]})
         .end((err, res) => {
           assert.equal(res.status, 201)
           expect(res.body).have.property('_id')
-          //expect(body).have.property('question')
+          expect(res.body).have.property('question')
           expect(res.body).have.property('answers')
           
           pollID = res.body._id
@@ -53,10 +53,59 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
         })
       })
       
-      it('Creating new answer in single poll', function(done){
+      it('Creating new poll with mongoose with two same answers (removing duplicates)', function(done){
         chai.request(require('../server'))
-        .post('/api/poll/' + pollID + '/new')
-        .send()
+        .post('/api/new')
+        .send({owner: 'Tester', 
+               question: 'Test question #2', 
+               answers: [{answer: 'Test answer'}, {answer: 'Some answer'}, {answer: 'Test answer'}]})
+        .end((err, res) => {
+          assert.equal(res.status, 201)
+          expect(res.body).have.property('_id')
+          expect(res.body).have.property('question')
+          expect(res.body).have.property('answers').that.has.length(2)
+          
+          pollID_2 = res.body._id
+          done()
+        })
+      })
+      
+      it('Creating new poll with mongoose - existed question (error 500)', function(done){
+        chai.request(require('../server'))
+        .post('/api/new')
+        .send({owner: 'Tester', question: 'Test question', answers: [{answer: 'Test answer #999'}]})
+        .end((err, res) => {
+          assert.equal(res.status, 500)
+          const error = res.body.error
+          assert.equal(error.code, 11000)
+          assert.equal(error.name, 'MongoError')
+          done()
+        })
+      })
+      
+      it('Creating new poll with mongoose (new question, but answer from previous poll)', function(done){
+        chai.request(require('../server'))
+        .post('/api/new')
+        .send({owner: 'Tester', question: 'Test question2', answers: [{answer: 'Test answer'}]})
+        .end((err, res) => {
+          assert.equal(res.status, 201)
+          expect(res.body).have.property('_id')
+          expect(res.body).have.property('question')
+          expect(res.body).have.property('answers')
+          
+          pollID_3 = res.body._id
+          
+          done()
+        })
+      })
+      
+    })
+    
+    describe('2.2 PUT requests', () => {
+      it('Creating new answer in a single poll', function(done){
+        chai.request(require('../server'))
+        .put('/api/poll/' + pollID + '/new')
+        .send({answer: 'Second answer'})
         .end((err, res) => {
           assert.equal(res.status, 201)
           expect(res.body).is.an('object')
@@ -73,10 +122,24 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
         })
       })
       
-      it('Creating new answer in single poll (repeat)', function(done){
+      it('Creating new answer in a single poll - existed answer (error 500)', function(done){
         chai.request(require('../server'))
-        .post('/api/poll/' + pollID + '/new')
-        .send()
+        .put('/api/poll/' + pollID + '/new')
+        .send({answer: 'Second answer'})
+        .end((err, res) => {
+          console.log(res.body)
+          assert.equal(res.status, 500)
+          const error = res.body.error
+          assert.equal(error.message, 'This answer already exist in this poll.')
+          
+          done()
+        })
+      })
+      
+      it('Creating new answer in a single poll (repeat)', function(done){
+        chai.request(require('../server'))
+        .put('/api/poll/' + pollID + '/new')
+        .send({answer: 'Third answer'})
         .end((err, res) => {
           assert.equal(res.status, 201)
           expect(res.body).is.an('object')
@@ -93,10 +156,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
         })
       })
       
-    })
-    
-    describe('2.2 PUT requests', () => {
-      it('Upvoting an answer in single poll', function(done){
+      it('Upvoting an answer in a single poll', function(done){
         chai.request(require('../server'))
         .put(`/api/poll/${pollID}/${answerID}/vote`)
         .send()
@@ -114,7 +174,7 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
         })
       })
       
-      it('Upvoting an answer in single poll (repeat)', function(done){
+      it('Upvoting an answer in a single poll (repeat)', function(done){
         chai.request(require('../server'))
         .put(`/api/poll/${pollID}/${answerID}/vote`)
         .send()
@@ -140,9 +200,10 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
         .end((err, {status, body}) => {
           assert.equal(status, 200)
           expect(body).is.an('array')
-          expect(body[0]._id).equal(pollID)
-          expect(body[0].answers).is.an('array')
-          expect(body[0].answers[0]._id).equals(answerID)
+          const index = body.map(function(e) { return e._id; }).indexOf(pollID);
+          expect(body[index]._id).equal(pollID)
+          expect(body[index].answers).is.an('array')
+          expect(body[index].answers[0]._id).equals(answerID)
           
           done()
         })
@@ -166,14 +227,35 @@ describe('/// SERVER RESPONSE & MONGO TEST UNIT ///', function () {
     })
       
     describe('2.4 DELETE requests', () => {
-      it('Deleting single poll', function(done){
+      it('Deleting first poll', function(done){
         chai.request(require('../server'))
         .delete('/api/poll/' + pollID)
-        .send()
         .end((err, res) => {
           assert.equal(res.status, 200)
           expect(res.body).is.an('object')
           expect(res.body._id).is.equal(pollID)
+          done()
+        })
+      })
+      
+      it('Deleting second poll', function(done){
+        chai.request(require('../server'))
+        .delete('/api/poll/' + pollID_2)
+        .end((err, res) => {
+          assert.equal(res.status, 200)
+          expect(res.body).is.an('object')
+          expect(res.body._id).is.equal(pollID_2)
+          done()
+        })
+      })
+      
+      it('Deleting third poll', function(done){
+        chai.request(require('../server'))
+        .delete('/api/poll/' + pollID_3)
+        .end((err, res) => {
+          assert.equal(res.status, 200)
+          expect(res.body).is.an('object')
+          expect(res.body._id).is.equal(pollID_3)
           done()
         })
       })

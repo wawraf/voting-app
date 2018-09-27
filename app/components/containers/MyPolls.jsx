@@ -1,7 +1,7 @@
 import React from 'react'
 
 //Import modules
-import Poll from './Poll'
+import Poll from '../presentationals/Poll'
 
 const MyPolls = ({ isLogged }) => 
 (
@@ -9,21 +9,18 @@ const MyPolls = ({ isLogged }) =>
     <h1>My Polls</h1>
     <div className='pollsList'>
       <div className='pollOnList'>
-        <Poll />
         <a href='#'>See this poll</a>
       </div>
     </div>
     
     <div className='pollsList'>
       <div className='pollOnList'>
-        <Poll />
         <a href='#'>See this poll</a>
       </div>
     </div>
     
     <div className='pollsList'>
       <div className='pollOnList'>
-        <Poll />
         <a href='#'>See this poll</a>
       </div>
     </div>

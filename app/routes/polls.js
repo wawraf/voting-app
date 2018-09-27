@@ -1,6 +1,17 @@
 import Poll from '../models/poll'
 
 module.exports = (router) => {
+  
+  /* Authentication */
+  const isLogged = (req, res, next) => {
+    if (req.isAuthenticated() || process.env.NODE_ENV == 'test') return next()
+    res.redirect('/')
+  }
+
+  const isLoggedOut = (req, res, next) => {
+    if (req.isUnauthenticated()) return next()
+    res.redirect('/')
+  }
 
   /* Router PARAM settings */
   router.param('pID', (req, res, next, id) => {
@@ -33,7 +44,6 @@ module.exports = (router) => {
 
   /* GET,POST, DELETE Routes */
   router.get('/api/polls', (req, res, next) => {
-    console.log('calling GET polls')
     Poll.find({}, (err, docs) => {
       if (err) return next(err)
       res.status(200).json(docs);
@@ -46,14 +56,31 @@ module.exports = (router) => {
 
   router.post('/api/new', (req, res, next) => {
     const poll = new Poll(req.body)
+    
+    /* Removing duplicates */
+    let obj = {};
+    const len = poll.answers.length
+
+    for ( var i=0; i < len; i++ )
+        obj[poll.answers[i]['answer']] = poll.answers[i];
+
+    poll.answers = new Array();
+    for ( var key in obj )
+        poll.answers.push(obj[key]);
+    /* Removing duplicates */
+    
     poll.save((err, doc) => {
       if (err) return next(err)
       res.status(201).json(doc)
     })
   })
 
-  router.post('/api/poll/:pID/new', (req, res, next) => {
-    req.poll.answers.push(req.body);
+  router.put('/api/poll/:pID/new', (req, res, next) => {
+    const answers = req.poll.answers
+    
+    if (answers.map(function(e) { return e.answer; }).indexOf(req.body.answer) == -1)
+    req.poll.answers.push(req.body)
+    else return next(new Error('This answer already exist in this poll.'))
 
     req.poll.save((err, doc) => {
       if (err) return next(err)
@@ -68,7 +95,7 @@ module.exports = (router) => {
     })
   })
 
-  router.delete('/api/poll/:pID', (req, res, next) => {
+  router.delete('/api/poll/:pID', isLogged, (req, res, next) => {
     req.poll.remove((err) => {
       if (err) return next(err)
 
