@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, isLogged, ...rest }) => (
       isLogged ? (
         <Component {...props} />
       ) : (
-        <Redirect
+        <Redirect push
           to={{
             pathname: "/",
             state: { from: props.location }

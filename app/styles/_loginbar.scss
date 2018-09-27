@@ -1,0 +1,53 @@
+.loginbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background: repeating-linear-gradient(
+    45deg,
+    #222,
+    #222 10px,
+    #333 10px,
+    #333 20px
+  );
+  opacity: 0.9;
+  z-index: 10;
+}
+
+.loginbar-btns {
+  position: relative;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  
+  .btn {
+    margin: 30px auto;
+    display: block;
+    min-width: 200px;
+    max-width: 300px;
+    font-size: 2em;
+    font-weight: bold;
+  }
+}
+
+.login-enter {
+  opacity: 0.01;
+}
+
+.login-enter.login-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.login-leave {
+  opacity: 1;
+}
+
+.login-leave.login-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

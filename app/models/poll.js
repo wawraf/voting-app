@@ -10,7 +10,7 @@ const AnswerSchema = new Schema({
   votes: {
     type: Number,
     default: 0,
-  },
+  }
 });
 
 AnswerSchema.method('vote', function (callback) {
@@ -25,6 +25,7 @@ const PollSchema = new Schema({
     default: 'Question'
   },
   answers: [AnswerSchema],
+  owner: String
 });
 
 const Poll = mongoose.model('Poll', PollSchema);
