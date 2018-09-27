@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator'
 const Schema = mongoose.Schema;
 
 const AnswerSchema = new Schema({
   answer: {
     type: String,
-    unique: true,
     default: 'Answer'
   },
   votes: {
@@ -12,6 +12,8 @@ const AnswerSchema = new Schema({
     default: 0,
   }
 });
+
+AnswerSchema.plugin(uniqueValidator)
 
 AnswerSchema.method('vote', function (callback) {
   this.votes += 1;
