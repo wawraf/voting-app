@@ -6,12 +6,10 @@ import User from '../models/user'
 module.exports = (passport) => {
   
   passport.serializeUser((user, done) => {
-    console.log(`___SERIALIZE${user}+++${user}`);
     done(null, user._id)
   })
   
   passport.deserializeUser((id, done) => {
-    console.log(`____DESERIALIZE${id}+++${id}`);
     User.findById(id, (err, user) => {
       done(null, user)
     })

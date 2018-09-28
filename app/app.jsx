@@ -18,7 +18,7 @@ axios
   .get('/auth/user')
   .then(res => {
     !!res.data.user
-    ? store.dispatch(login())
+    ? store.dispatch(login(res.data.user._id))
     : store.dispatch(logout())
   })
   .then(() => 
@@ -29,6 +29,4 @@ axios
           document.getElementById('main')
         )
        )
-  .catch(err => console.log('error while checking user'))
-
-
+  .catch(err => console.log('Error while checking user and loading APP.'))

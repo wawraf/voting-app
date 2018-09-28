@@ -1,0 +1,122 @@
+.snip1553 {
+  font-family: 'Monsterrat', sans-serif;
+  font-size: 2em;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-bottom: 10px double firebrick;
+  
+  .vote {
+    color: floralwhite;
+    font-size: 4em;
+    font-weight: 1000;
+  }
+}
+
+.snip1553 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.snip1553:after {
+  background-color: firebrick;
+  bottom: 0;
+  content: '';
+  height: 0%;
+  right: 0;
+  position: absolute;
+  width: 10px;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.snip1553 .pollContent {
+  vertical-align: top;
+  // max-width: 100%;
+  backface-visibility: hidden;
+}
+
+.snip1553 .vote {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1em;
+  opacity: 0;
+}
+
+.snip1553 h3 {
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.snip1553 h3 span {
+  display: block;
+  font-weight: 700;
+}
+
+.snip1553 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.snip1553:hover > .pollContent,
+.snip1553.hover > .pollContent {
+  opacity: 0.1;
+}
+
+.snip1553:hover:after,
+.snip1553.hover:after {
+  height: 100%;
+}
+
+.snip1553:hover .vote,
+.snip1553.hover .vote {
+  opacity: 1;
+}
+
+
+
+.poll {
+  margin: 0 20%;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.pollQuestion {
+  
+}
+
+.pollAnswer {
+  color: floralwhite;
+}
+
+
+
+
+@media only screen and (max-width: 640px) {  
+  .poll {
+    margin: 10px 10%;
+    font-size: 1.5em;
+    
+    .vote {
+      font-size: 3em;
+    }
+  }
+}

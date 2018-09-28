@@ -22,7 +22,11 @@ const checkUser = () => (dispatch) => {
 }
 
 // Sidebar
-const showLoginBar = () => {
+const showLoginBar = (show) => {
+  // Disabling background element's scrollbar
+  if (show == 'show') document.body.classList.add('disableScroll')
+  else document.body.classList.remove('disableScroll')
+    
   return {type: actionTypes.SHOW_LOGINBAR}
 }
 
@@ -46,11 +50,23 @@ const getAllPolls = () => (dispatch) => {
   .catch(err => console.log('Fetching all articles - ERROR!'))
 }
 
+const getMyPolls = (owner) => (dispatch) => {
+  dispatch(loading(true))
+  
+  axios.get('/api/mypolls/' + owner)
+  .then((res) => {
+    dispatch(_getAllPolls(res.data))
+  })
+  .then((res) => dispatch(loading(false)))
+  .catch(err => console.log('Fetching my articles - ERROR!'))
+}
+
 module.exports = {
   login, 
   logout,
   loading,
   checkUser,
   showLoginBar,
-  getAllPolls
+  getAllPolls,
+  getMyPolls
 }
