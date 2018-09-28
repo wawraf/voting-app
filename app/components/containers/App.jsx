@@ -13,11 +13,6 @@ import LoginBar from './LoginBar'
 import Footer from '../presentationals/Footer'
 
 class App extends Component {
-  componentDidMount() {
-    const { checkUser } = this.props
-    checkUser()
-  }
-  
   render() {
     const { isLogged, showLoginBar, showLoginBarFunc } = this.props
 
@@ -26,12 +21,14 @@ class App extends Component {
         <div className='App'>
             <Header isLogged={ isLogged } showLoginBarFunc={ showLoginBarFunc } />
             <Home isLogged={isLogged} />
+          
             <ReactCSSTransitionGroup
                   transitionName="login"
                   transitionEnterTimeout={500}
                   transitionLeaveTimeout={300}>
               {showLoginBar ? <LoginBar key='loginBar' showLoginBarFunc={ showLoginBarFunc } /> : null}
             </ReactCSSTransitionGroup>
+            
             <Footer />
         </div>
       </BrowserRouter>
@@ -49,7 +46,7 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
   { 
-    showLoginBarFunc: () => dispatch(showLoginBar()),
+    showLoginBarFunc: (show) => dispatch(showLoginBar(show)),
     checkUser: () => dispatch(checkUser())
   }
 )

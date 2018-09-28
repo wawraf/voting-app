@@ -3,6 +3,9 @@
 @import 'footer';
 @import 'home';
 @import 'loader';
+@import 'scrollBar';
+@import 'button';
+@import 'sidebar';
   
 body {
   text-align: center;
@@ -15,6 +18,7 @@ body {
 
 a {
   color: white;
+  text-decoration: none;
 }
 
 .app {
@@ -24,7 +28,17 @@ a {
   flexDirection: 'column';
 }
 
+h1 {
+  color: whitesmoke;
+}
+
 h2 {
   font-weight: bold;
   color: #585858;
+}
+
+.disableScroll {
+  position: fixed !important; 
+  overflow-y: scroll !important;
+  width: 100% !important;
 }

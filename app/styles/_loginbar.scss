@@ -1,12 +1,12 @@
-$btn-max-width: 300px;
+$btn-max-width: 340px;
 
 .loginbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   background: repeating-linear-gradient(
     45deg,
     #222,
@@ -14,7 +14,7 @@ $btn-max-width: 300px;
     #333 10px,
     #333 20px
   );
-  opacity: 0.9;
+  opacity: 0.95;
   z-index: 10;
 }
 
@@ -32,8 +32,7 @@ $btn-max-width: 300px;
     display: block;
     min-width: 200px;
     max-width: $btn-max-width;
-    font-size: 2em;
-    font-weight: bold;
+    position: relative;
   }
 }
 

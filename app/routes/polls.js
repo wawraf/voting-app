@@ -49,6 +49,20 @@ module.exports = (router) => {
       res.status(200).json(docs);
     })
   })
+  
+  router.get('/api/mypolls/:owner', (req, res, next) => {
+    const { owner } = req.params
+    
+    Poll.find({owner}, (err, docs) => {
+      if (err) return next(err)
+      if (!docs) {
+        const err = new Error("You don't have any polls yet.")
+        res.status(404)
+        return next(err)
+      }
+      res.status(200).json(docs);
+    })
+  })
 
   router.get('/api/poll/:pID', (req, res) => {
     res.json(req.poll);
