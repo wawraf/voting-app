@@ -20,7 +20,7 @@ class MyPolls extends Component {
     
     if (loading) return <Loader />
     
-    const content = (  
+    const content = polls.length !== 0 ? (  
       <div className='polls side'>
         <div className='pollsList'>
         {polls.map((poll, index) => {
@@ -30,7 +30,7 @@ class MyPolls extends Component {
         })}
         </div>
       </div>
-    )
+    ) : <h1>You don't have any polls.</h1>
     
     return <CSS_Slide Wrapper={content} priv={true} {...this.props} /> 
     

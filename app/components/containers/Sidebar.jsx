@@ -32,9 +32,17 @@ const Sidebar = ({ isLogged }) =>
 
       {isLogged ?
       <li className='homeCard'>
-        <Link id='createpollLink' className='sidebarLink' to='/' onClick={ (e) => disableButton(e) }>CREATE POLL</Link>
+        <Link id='createpollLink' className='sidebarLink' to='/createpoll' onClick={ (e) => disableButton(e) }>CREATE POLL</Link>
       </li>
       : null }
+      
+      {location.pathname == '/mypolls' ?
+      <ul className='sidebar snip1189'>
+        <li className='homeCard summary'>
+          <Link id='summaryLink' className='sidebarLink' to='/summary' onClick={ (e) => disableButton(e) }>My Summary</Link>
+        </li>
+      </ul>
+      : null}
     </ul>
   )
 

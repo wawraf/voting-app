@@ -12,9 +12,9 @@ class Trans extends Component {
     return (
         <ReactCSSTransitionGroup
           transitionAppear={true}
-          transitionLeave={false}
           transitionAppearTimeout={1000}
           transitionEnterTimeout={1000}
+          transitionLeaveTimeout={700}
           transitionName="slide">
           {Wrapper}
         </ReactCSSTransitionGroup>
