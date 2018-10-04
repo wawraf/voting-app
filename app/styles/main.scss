@@ -6,6 +6,7 @@
 @import 'scrollBar';
 @import 'button';
 @import 'sidebar';
+@import 'singlePoll';
   
 body {
   text-align: center;
@@ -24,7 +25,7 @@ a {
 .app {
   position: 'relative';
   display: 'flex';
-  minHeight: '100vh';
+  height: '100vh';
   flexDirection: 'column';
 }
 

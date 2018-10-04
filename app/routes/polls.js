@@ -31,7 +31,7 @@ module.exports = (router) => {
 
   router.param('aID', (req, res, next, id) => {
     req.answer = req.poll.answers.id(id)
-
+    
     if (!req.answer) {
       const err = new Error('Document (answer) not found in DB.')
       err.status = 404
@@ -50,7 +50,7 @@ module.exports = (router) => {
     })
   })
   
-  router.get('/api/mypolls/:owner', (req, res, next) => {
+  router.get('/api/mypolls/:owner', isLogged, (req, res, next) => {
     const { owner } = req.params
     
     Poll.find({owner}, (err, docs) => {

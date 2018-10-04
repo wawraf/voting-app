@@ -16,7 +16,7 @@ const Home = ({ isLogged }) =>
       <Route exact path='/' />
       <Route path='/polls' exact render={(props) => <Polls {...props} />} />
       <Route path="/mypolls" render={(props) => <MyPolls {...props} />} />
-      <Route path="/singlepoll" component={SinglePoll} />
+      <Route path="/singlepoll/:pid" component={SinglePoll} />
       <Route component={Lost} />
     </Switch>
   </div>
