@@ -89,12 +89,15 @@ module.exports = (router) => {
     })
   })
 
-  router.put('/api/poll/:pID/new', (req, res, next) => {
+  router.put('/api/poll/:pID/new', isLogged, (req, res, next) => {
     const answers = req.poll.answers
-    
     if (answers.map(function(e) { return e.answer; }).indexOf(req.body.answer) == -1)
     req.poll.answers.push(req.body)
-    else return next(new Error('This answer already exist in this poll.'))
+    else {
+      let err = new Error('This answer already exist in this poll.')
+      err.name = 'Assertion error'
+      return next(err)
+    }
 
     req.poll.save((err, doc) => {
       if (err) return next(err)

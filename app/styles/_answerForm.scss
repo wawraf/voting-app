@@ -1,0 +1,75 @@
+@import './snippets/input';
+
+.addAnswerFormContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 10;
+  background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px, radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px, radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+  background-color: rgba(40, 40, 40, 0.85);
+  background-size: 16px 16px;
+  
+  .addAnswerForm {
+    position: relative;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    border: 2px double floralwhite;
+    border-radius: 20px;
+    width: 400px;
+    height: 150px;
+    background: firebrick;
+    color: floralwhite;
+    padding: 2em;
+    
+    form {
+      width: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    
+    .close {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+      cursor: pointer;
+    }
+    .close:hover {
+      opacity: 1;
+    }
+    .close:before, .close:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 33px;
+      width: 2px;
+      background-color: floralwhite;
+    }
+    .close:before {
+      transform: rotate(45deg);
+    }
+    .close:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+
+@media only screen and (max-width: 640px) {  
+  .addAnswerFormContainer {
+    .addAnswerForm {
+      width: 70vw;
+    }
+  }
+}

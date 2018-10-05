@@ -1,6 +1,7 @@
 import { LOGIN, LOGOUT, LOADING, 
         SHOW_LOGINBAR, GET_ALL_POLLS, 
-        GET_ONE_POLL, VOTE, REMOVE_POLL } from './actionTypes'
+        GET_ONE_POLL, VOTE, REMOVE_POLL, ADD_ANSWER, 
+        SHOW_ANSWER_FORM, INPUT_CHANGE } from './actionTypes'
 import { combineReducers } from 'redux'
 
 const isLogged = (state = {isLogged: false, user: null}, action) => {
@@ -50,11 +51,31 @@ const currentPoll = (state = {}, action) => {
 
     return newState
   }
+  else if (action.type == ADD_ANSWER) {
+    const newAnswer = action.payload
+    return {
+      ...state,
+      answers: [
+        ...state.answers,
+        newAnswer
+      ]
+    }
+  }
   else return state
 }
 
 const error = (state = false, action) => {
   return state
+}
+
+const showAddAnswerForm = (state = false, action) => {
+  if (action.type == SHOW_ANSWER_FORM) {
+    return action.payload == 'showForm'
+      ? true 
+      : action.payload == 'closeForm'
+        ? false
+        : state
+  } else return state
 }
 
 const reducers = combineReducers({
@@ -63,7 +84,8 @@ const reducers = combineReducers({
   allPolls,
   currentPoll,
   isLoading,
-  error
+  error,
+  showAddAnswerForm
 })
 
 export default reducers
