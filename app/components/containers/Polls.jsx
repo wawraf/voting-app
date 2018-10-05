@@ -16,9 +16,9 @@ class Polls extends Component {
   }
   
   render() {
-    const { polls, loading, isLogged } = this.props
+    const { polls, loading } = this.props
     
-    if (loading) return <Loader />
+    if (loading || polls.length == 0) return <Loader />
     
     const content = (
       <div className='polls side'>
@@ -40,8 +40,7 @@ class Polls extends Component {
 const mapStateToProps = (state) => (
   {
     polls: state.allPolls,
-    loading: state.isLoading,
-    isLogged: state.isLogged.isLogged
+    loading: state.isLoading
   }
 )
 

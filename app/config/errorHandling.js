@@ -14,7 +14,8 @@ export default (app) => {
     
     res.json({
       error: {
-        message: err.message
+        message: err.message,
+        name: err.name
       },
     });
   });

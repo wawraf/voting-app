@@ -7,6 +7,8 @@ const DELETE_POLL = 'DELETE_POLL'
 const SHOW_LOGINBAR = 'SHOW_LOGINBAR'
 const LOADING = 'LOADING'
 const VOTE = 'VOTE'
+const ADD_ANSWER = 'ADD_ANSWER'
+const SHOW_ANSWER_FORM = 'SHOW_ANSWER_FORM'
 
 module.exports = {
   GET_ALL_POLLS,
@@ -17,5 +19,7 @@ module.exports = {
   DELETE_POLL,
   SHOW_LOGINBAR,
   LOADING,
-  VOTE
+  VOTE,
+  ADD_ANSWER,
+  SHOW_ANSWER_FORM
 }

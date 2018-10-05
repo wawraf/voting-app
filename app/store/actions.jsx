@@ -1,6 +1,8 @@
 const actionTypes = require('./actionTypes');
 const axios = require('axios')
 
+const sweetalert = require('sweetalert')
+
 // Authentication
 const login = (id) => (
   { type: actionTypes.LOGIN, payload: {isLogged: true, user: id} }
@@ -60,7 +62,10 @@ const getMyPolls = (owner) => (dispatch) => {
     dispatch(_getOnePoll({}))
   })
   .then((res) => dispatch(loading(false)))
-  .catch(err => console.log('Fetching my polls - ERROR!'))
+  .catch(err => {
+    console.log('Fetching my polls - ERROR!')
+    console.log(err)
+  })
 }
 
 const _getOnePoll = (poll) => (
@@ -99,6 +104,34 @@ const removePoll = (pid) => (dispatch)=> {
   .catch(err => console.log('Error while deleting poll'))
 }
 
+const _showAnswerForm = (action) => {
+  // Disabling background element's scrollbar
+  if (action == 'showForm') document.body.classList.add('disableScroll')
+  else document.body.classList.remove('disableScroll')
+  
+  return {
+    type: actionTypes.SHOW_ANSWER_FORM, payload: action
+  }
+}
+
+const _addAnswer = (answer) => (
+  {
+    type: actionTypes.ADD_ANSWER, payload: answer
+  }
+)
+
+const addAnswer = (action) => (dispatch) => {
+  if (action == 'showForm' || action == 'closeForm') return dispatch(_showAnswerForm(action))
+  axios.put('/api/poll/' + action._id + '/new', {answer: action.answer})
+  .then(res => {
+    dispatch(_showAnswerForm('closeForm'))
+    dispatch(_addAnswer(res.data.answers[res.data.answers.length - 1]))
+  })
+  .catch(err => {
+    sweetalert({text: err.response.data.error.message, icon: 'error'})
+  })
+}
+
 module.exports = {
   login, 
   logout,
@@ -109,5 +142,6 @@ module.exports = {
   getMyPolls,
   getOnePoll,
   vote,
-  removePoll
+  removePoll,
+  addAnswer
 }

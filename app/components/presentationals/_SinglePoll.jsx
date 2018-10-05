@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import sweetalert from 'sweetalert'
 
 //Import modules
 import Loader from './Loader'
 import PieChart from './PieChart'
+import AddAnswerForm from './AddAnswerForm'
+
+const swal = (remove, id) => sweetalert({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this poll!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    remove(id)
+    sweetalert("Your poll has been deleted!", {
+      icon: "success",
+    });
+  }
+});
 
 class SinglePoll extends Component {
   componentDidMount() {
@@ -16,7 +34,7 @@ class SinglePoll extends Component {
   
   render() {
     const { loading } = this.props
-    const { poll, currentUser, logged, vote, removePoll, addAnswer } = this.props
+    const { poll, currentUser, logged, vote, removePoll, addAnswer, showAddAnswerForm } = this.props
     
     if (this.props.poll.removed) return <h1>Poll deleted!</h1>
     
@@ -39,11 +57,11 @@ class SinglePoll extends Component {
               })
               }
             </div>
-            <div className='singlePollBtns_2'>
-              <a href='' className='btn btnAddAnswer' onClick={(e) => { e.preventDefault(); addAnswer() }}>
+            {logged ? <div className='singlePollBtns_2'>
+              <a href='' className='btn btnAddAnswer' onClick={(e) => { e.preventDefault(); addAnswer('showForm') }}>
                 <span>ADD ANSWER</span>
               </a>
-            </div>
+            </div> : null}
           </div>
           <div className='oneChart'>
             {poll.answers ? <PieChart data={poll.answers} /> : null}
@@ -52,11 +70,15 @@ class SinglePoll extends Component {
         {
           currentUser == poll.owner 
           ? <div className='singlePollBtns'>
-              <Link to='/singlepoll/deleted' className='btn btnDelete' onClick={() => removePoll(poll._id)}>
-                <span>DELETE</span>
+              <Link to='/singlepoll/deleted' className='btn btnDelete' onClick={() => swal(removePoll, poll._id)}>
+                <span>DELETE POLL</span>
               </Link>
             </div>
           : null
+        }
+        {showAddAnswerForm
+        ? <AddAnswerForm />
+        : null
         }
       </div>
     )
