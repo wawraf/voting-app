@@ -5,7 +5,7 @@
   "author": "Rafał Wawrowski",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack && babel-node --presets @babel/env server.js",
+    "start": "NODE_ENV=production webpack && babel-node --presets @babel/env server.js",
     "dev": "NODE_ENV=development node public/app.bundle.js",
     "dev:build": "webpack --watch",
     "test": "NODE_ENV=test mocha --require @babel/polyfill --require @babel/register --exit"
