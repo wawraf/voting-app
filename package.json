@@ -28,7 +28,7 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "express-session": "^1.15.6",
-    "bcrypt": "^3.0.1",
+    "bcrypt": "^5.0.0",
     "axios": "^0.18.0",
     "redux-thunk": "^2.3.0",
     "react-addons-css-transition-group": "^15.6.2",
